@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-    before_action :set_tweet, only: [:show, :edit, :update]
+    before_action :set_tweet, only: [:show, :edit, :update, :destroy]
     
     def index
         @tweets = Tweet.all
@@ -38,7 +38,8 @@ class TweetsController < ApplicationController
     end
 
     def destroy
-
+        @tweet.destroy
+        redirect_to tweets_path, notice: 'tweetを削除しました'
     end
 
     def confirm
