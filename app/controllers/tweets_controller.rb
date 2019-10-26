@@ -11,11 +11,15 @@ class TweetsController < ApplicationController
 
     def create  
         @tweet = Tweet.new(tweet_params)
-        if @tweet.save
-            redirect_to tweets_path, notice: "tweetを投稿しました"
+        if params[:back]
+            render 'new'
         else
-            flash.now[:alert] = 'tweetは１文字以上１４０文字以内で投稿してください'
-            render new_tweet_path
+            if @tweet.save
+                redirect_to tweets_path, notice: "tweetを投稿しました"
+            else
+                flash.now[:alert] = 'tweetは１文字以上１４０文字以内で投稿してください'
+                render new_tweet_path
+            end
         end
     end
 
@@ -39,6 +43,7 @@ class TweetsController < ApplicationController
 
     def confirm
         @tweet = Tweet.new(tweet_params)
+        render "new" if @tweet.invalid?
     end
 
     private
