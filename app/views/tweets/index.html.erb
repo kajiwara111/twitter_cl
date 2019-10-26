@@ -1,0 +1,16 @@
+<h1>tweet一覧</h1>
+<table>
+    <tr>
+        <th>内容</th>
+        <th>リンク</th>
+    </tr>
+
+<% @tweets.each do |tweet| %>
+    <tr>
+        <td><%= tweet.content %></td>
+        <td><%= link_to '詳細を確認する', tweet_path(tweet.id) %></td>
+    </tr>
+<% end %>
+</table>
+
+<%= link_to 'tweet作成画面に戻る', new_tweet_path %>
