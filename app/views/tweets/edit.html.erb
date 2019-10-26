@@ -1,0 +1,10 @@
+<%= form_with(model: @tweet, local: true) do |f| %>
+
+    <div class = 'tweet_content'> 
+        <%= f.label :content %>
+        <%= f.text_field :content %>
+    </div>
+    <%= f.submit %>
+<% end %>
+<%= link_to 'tweet一覧画面へ', tweets_path, method: :get %>
+
